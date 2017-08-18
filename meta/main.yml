@@ -4,7 +4,6 @@ dependencies: []
 galaxy_info:
   author: Diego Almada
   description: An Ansible Nginx Role created
-  license: -
   min_ansible_version: 1.9
   platforms:
   - name: Ubuntu
