@@ -1,0 +1,19 @@
+---
+
+- name: Install the nginx package
+  apt: name=nginx state=present update_cache=yes
+
+- name: Give permission to sites-available, sites-enabled e conf.d paths
+  file: path=/etc/nginx/{{ item }} state=directory owner=root group=root mode=0755
+  with_items:
+    - "sites-available"
+    - "sites-enabled"
+    - "conf.d"
+
+- name: Customize default file in the Nginx path
+  template:
+    src=default.tpl
+    dest=/etc/nginx/sites-available/default
+    owner=root group=root mode=0755
+  notify:
+    - restart nginx
